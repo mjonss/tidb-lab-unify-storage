@@ -1,3 +1,4 @@
+import os
 from litellm import completion
 import streamlit as st
 
@@ -22,9 +23,9 @@ if st.button("Send") and query:
         response = completion(
             model=llm_model,
             messages=[{"content": prompt, "role": "user"}],
-            # We use AWS Inference Profile here to track costs.
-            # If you are using this code outside of TiDB Labs, you need to remove the line below.
-            model_id="arn:aws:bedrock:us-west-2:841162690310:application-inference-profile/4i83xkynoouo",
+            # To track costs with an AWS application inference profile, as TiDB Labs do, set BEDROCK_MODEL_ID to its ARN.
+            # Without it, the model is called directly with your own AWS credentials.
+            **({"model_id": os.environ["BEDROCK_MODEL_ID"]} if os.getenv("BEDROCK_MODEL_ID") else {}),
         )
 
         st.markdown(f"### 🤖 {llm_model}")
