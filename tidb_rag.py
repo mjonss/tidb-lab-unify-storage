@@ -52,7 +52,9 @@ table = db.open_table(table_name)
 if table is None:
     table = db.create_table(schema=Employee)
 
-if not table.has_fts_index("intro"):
+# has_fts_index() always returns False on TiDB Cloud Starter (https://github.com/pingcap/pytidb/issues/264),
+# so the second run would fail with "Duplicate key name". Check the schema instead.
+if not db.query(f"SHOW INDEXES FROM {table_name} WHERE Column_name = 'intro' AND Index_type = 'FULLTEXT'").to_list():
     table.create_fts_index("intro")
 
 
