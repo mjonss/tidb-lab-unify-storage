@@ -100,7 +100,7 @@ query = st.text_input("Enter your question:", "")
 if st.button("Send") and query:
     with st.spinner("Processing..."):
         # Retrieve relevant employees
-        results = table.search(query, search_type="hybrid").text_column("intro").limit(1)
+        results = table.search(query, search_type="hybrid").text_column("intro").limit(int(os.getenv("RAG_LIMIT", "3")))
 
         if results:
             if mode == "Retrieval Only":
