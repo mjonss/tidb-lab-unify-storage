@@ -1,0 +1,58 @@
+Who keeps bees?
+plumber
+Who can fix my plumbing?
+INC-2041
+Vem bakar kanelbullar?
+surf instructor
+Who collects train tickets as a hobby?
+Is there an anonymous street artist in Gothenburg?
+Who paints seagulls?
+nyckelharpa
+Who has a hedgehog?
+Where can I eat a pizza named after a racing driver?
+Who moved from MySQL to TiDB?
+Who ran a marathon dressed as a pastry?
+Who sits in a lake every morning in winter?
+Who skied a slope backwards?
+Which king founded Gothenburg?
+Which Swede is on a postage stamp for a hockey goal?
+What is MySQL named after?
+I have a leaking pipe, who can help?
+1:42.318
+What happened in INC-2041?
+Who teaches surfing?
+Who bakes cinnamon buns on Fridays?
+Who collects old train tickets?
+Who bought the coffee machine that caused INC-2041?
+Who plays or builds the nyckelharpa?
+What does Björn Borg do for a living?
+What does Zlatan do in his spare time?
+Who invented the World Wide Web?
+Who saw the northern lights in July?
+Who would know the most about the Vasa ship?
+What is the airspeed velocity of an unladen swallow?
+Colorless green ideas sleep furiously
+Which hockey player invented dynamite?
+How many bees fit in a Volvo 240?
+asdf qwerty
+Is there a Banksy in Gothenburg?
+How many people in the table are from Gothenburg?
+List all tennis players.
+Who is the oldest person in the table?
+Who is not an athlete?
+Who works at Lingonberry Systems?
+Who won the most recent Formula 1 championship?
+What is Linus Torvalds' favorite food?
+Who keeps beehives on an office roof?
+beehives
+Who gives colleagues honey at Christmas?
+Is there a plumber in Mölndal?
+plumber Mölndal
+Which plumber is not the tennis player Björn Borg?
+Who paints seagulls in Gothenburg?
+Who paints murals on electrical boxes?
+Is there a Japanese baker in Stockholm?
+Who bakes cinnamon rolls in Stockholm?
+Vem bakar kanelbullar i Stockholm?
+Who ran the Stockholm Marathon in a costume?
+Who fixes leaking pipes in Mölndal?
