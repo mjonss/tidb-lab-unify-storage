@@ -62,11 +62,17 @@ one. `playground/data/questions.txt` has 58 questions. Pairs that show what retr
 | Misses (generic) | Hits (specific) |
 |---|---|
 | Who is a beekeeper? | Who has beehives? |
-| Who bakes cinnamon buns on Fridays? | Is there a Japanese baker in Stockholm? |
-| I have a leaking pipe, who can help? | Who fixes leaking pipes in Mölndal? |
+| Who bakes cinnamon buns on Fridays? | ストックホルムのパン職人 (Japanese for "Stockholm's bread baker"; her intro is in Japanese) |
+| Is there a Banksy in Gothenburg? | Is there an anonymous street artist in Gothenburg? |
+
+These behave the same with exact vector search, with TiDB's vector index, and in `tidb_rag.py` (checked 2026-10-30).
 
 Also try "What does Björn Borg do for a living?" (two people share the name), "INC-2041" (an identifier only full-text
-search finds) and "Who saw the northern lights in July?".
+search finds), "Who fixes leaking pipes in Mölndal?" and "Who saw the northern lights in July?".
+
+TiDB's vector index is approximate. Once fully built, it missed the nearest row for 9 of the 58 questions on this data
+(recall at 3: 0.88); for example "Who keeps bees?" loses Elin Rosengren from the vector results. With 5,105 rows an exact
+search is cheap (about 60 ms instead of 40): add `+ 0` to the distance in `ORDER BY` so that TiDB compares every row.
 
 Without AWS, TiDB can embed questions itself with its hosted model, on the same vectors:
 
