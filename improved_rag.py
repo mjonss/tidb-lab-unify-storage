@@ -166,7 +166,7 @@ if right.button("Save Data"):
 
 with st.expander("📁 All Employees in the MySQL", expanded=False):
     with Session(engine) as session:
-        employees = session.exec(select(Employee)).all()
+        employees = session.exec(select(Employee).order_by(Employee.id).limit(100)).all()  # first 100 rows only
         if employees:
             data = [{'id': employee.id, 'name': employee.name, 'intro': employee.intro} for employee in employees]
             df = pd.DataFrame(data)

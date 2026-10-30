@@ -80,9 +80,11 @@ if right.button("Save Data"):
         st.rerun()
 
 with st.expander("📁 All Employees in the Database", expanded=False):
-    employees = table.query()
+    # The first 100 rows only: table.query() fetches every row with its vector, on every rerun.
+    employees = db.query(f"SELECT id, name, intro, intro_vec FROM {table_name} ORDER BY id LIMIT 100").to_list()
     if employees:
-        data = [{'id': employee.id, 'name': employee.name, 'intro': employee.intro, 'intro_vec': employee.intro_vec} for employee in employees]
+        st.caption(f"First {len(employees)} of {table.rows()} rows")
+        data = [{'id': e['id'], 'name': e['name'], 'intro': e['intro'], 'intro_vec': e['intro_vec']} for e in employees]
         df = pd.DataFrame(data)
         st.dataframe(df)
     else:
