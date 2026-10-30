@@ -82,6 +82,27 @@ ORDER BY VEC_COSINE_DISTANCE(intro_vec, EMBED_TEXT('tidbcloud_free/amazon/titan-
 LIMIT 3;
 ```
 
+## RAG explorer
+
+`rag_explorer.py` sends one question through five ways of searching the same data and shows every request (SQL, Bedrock,
+Milvus, Elasticsearch, MySQL) with its wall-clock time and the rows it found:
+
+1. TiDB, one SQL statement: TiDB embeds the question itself (`EMBED_TEXT`) and runs the whole hybrid search.
+2. TiDB, several statements: the vector comes back to the app, rank fusion runs in Python.
+3. TiDB, the app embeds the question (Bedrock, as the lab apps), then one SQL statement.
+4. pytidb, as `tidb_rag.py`: the SQL that pytidb 0.0.6 sends, captured.
+5. MySQL + Elasticsearch + Milvus, as `improved_rag.py`.
+
+"All five" runs them one after another for a side-by-side comparison of results, round trips and time. Load the
+playground data first (both loaders), then:
+
+```sh
+cd /root/tidb-lab-unify-storage && poetry run streamlit run rag_explorer.py --server.port 8503
+```
+
+TiDB caches the embedding of a question it has seen, so the first request that embeds a new question pays for computing it;
+search again to compare warm times.
+
 ## Changes from the original
 
 - `tidb_rag.py` checks for its full-text index with `SHOW INDEXES`: pytidb's `has_fts_index()` always returns False on
