@@ -1,6 +1,9 @@
 # Data sources
 
-- `persons_playground.csv` and `.parquet`: 5,105 people. Ids 101 to 169 are real public people, described from public
+- `persons_playground.csv` and `.parquet`: 5,108 people. Ids 1 to 3 (Cheese Wang, Hao Huo, Humble BGL) are the lab's own
+  sample rows, copied verbatim (no "Name: " prefix) from `rag.py`, `improved_rag.py` and `tidb_rag.py` in
+  https://github.com/Icemap/tidb-lab-unify-storage (`main` at bb48062, no license stated), so that the playground
+  answers as the lab's own data does. Ids 101 to 169 are real public people, described from public
   knowledge, and ids 1001 to 1036 are fictional, with planted details (INC-2041, Lingonberry Systems, 1:42.318, ...);
   both were written for this demo. Ids 100001 to 105000 are synthetic people derived from NVIDIA Nemotron-Personas-USA,
   https://huggingface.co/datasets/nvidia/Nemotron-Personas-USA, licensed CC BY 4.0
@@ -9,3 +12,6 @@
 - Vectors (`intro_vec`, `questions_playground.json`, `hosted_sample.json`): Amazon Titan Text Embeddings V2, 1024 dimensions.
   Bedrock's `amazon.titan-embed-text-v2:0` and TiDB Cloud's hosted `tidbcloud_free/amazon/titan-embed-text-v2` gave
   bit-for-bit identical vectors for every row (checked 2026-10-30), so they work with either.
+  The vectors of ids 1 to 3 (of the intro alone, as the lab apps embed it) and of "Who is Cheese Wang at PingCAP?" were
+  computed with the hosted model on 2026-10-31; the same method reproduced four stored Bedrock vectors bit for bit.
+  `bedrock_embed.py --check` compares them with Bedrock.

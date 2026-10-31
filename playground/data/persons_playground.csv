@@ -1,4 +1,7 @@
 id,name,intro,kind
+1,Cheese Wang,"Cheese is a Senior Software Engineer of AI Application at PingCAP, the company behind TiDB",lab sample
+2,Hao Huo,"Hao Huo is an engineer of PingCAP, the company behind TiDB | Build pingcap/autoflow / OSSInsight.io",lab sample
+3,Humble BGL,"Humble BGL is the Head of Engagement Innovation at PingCAP, the company behind TiDB",lab sample
 101,Ada Lovelace,"Ada Lovelace: English mathematician (1815-1852) who wrote the first published algorithm intended for a machine, in her notes on Charles Babbage's Analytical Engine. She is often called the first computer programmer.",real person
 102,Alan Turing,"Alan Turing: British mathematician (1912-1954) who described the Turing machine in 1936, helped break German Enigma ciphers at Bletchley Park during World War II, and proposed the Turing test for machine intelligence in 1950.",real person
 103,Grace Hopper,Grace Hopper: American computer scientist and US Navy rear admiral (1906-1992). She built one of the first compilers and influenced the design of COBOL. She popularized the word 'bug' after a moth was found in the Harvard Mark II computer.,real person

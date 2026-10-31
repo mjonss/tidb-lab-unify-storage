@@ -55,6 +55,7 @@ EXAMPLES = [
     "ストックホルムのパン職人", "Is there a Banksy in Gothenburg?", "Is there an anonymous street artist in Gothenburg?",
     "What does Björn Borg do for a living?", "INC-2041", "Who fixes leaking pipes in Mölndal?",
     "Who saw the northern lights in July?", "Finns det någon rörmokare?", "Is there a plumber?",
+    "Who is Cheese Wang at PingCAP?",
 ]
 
 
@@ -101,6 +102,8 @@ def short(text: str) -> str:
 
 
 def kind(row_id: int) -> str:
+    if row_id < 100:
+        return "lab sample"
     return "real person" if row_id < 1000 else ("fictional" if row_id < 100000 else "filler")
 
 

@@ -1,7 +1,7 @@
 # TiDB Lab: RAG with unified storage
 
 A fork of [Icemap/tidb-lab-unify-storage](https://github.com/Icemap/tidb-lab-unify-storage), the code behind the TiDB
-Labs RAG lab, for trying the lab on your own machine after it ends. It adds a 5,105-person playground dataset with
+Labs RAG lab, for trying the lab on your own machine after it ends. It adds a 5,108-person playground dataset with
 precomputed vectors and loaders for it, and fixes problems found while running the lab (listed below).
 
 The original repository has no license file, so its code comes with no license beyond GitHub's terms of service; ask
@@ -44,8 +44,9 @@ Then open http://localhost:8501. The other apps can use ports 8502 to 8504.
 
 ## Playground data
 
-`playground/data/persons_playground.parquet`: 69 real public people, 36 fictional people with planted details that no
-model can know, and 5,000 synthetic filler people that make generic questions harder, as in real data. The vectors
+`playground/data/persons_playground.parquet`: the lab's own three sample rows (ids 1 to 3, the ones Save Data
+inserts), 69 real public people, 36 fictional people with planted details that no model can know, and 5,000 synthetic
+filler people that make generic questions harder, as in real data. The vectors
 (column `intro_vec`) are Titan Text Embeddings V2; Bedrock's `amazon.titan-embed-text-v2:0` and TiDB Cloud's hosted
 `tidbcloud_free/amazon/titan-embed-text-v2` gave bit-for-bit identical vectors for every row.
 
@@ -56,8 +57,11 @@ poetry run python playground/load_tidb.py --table employees   # for tidb_rag.py
 poetry run python playground/load_multidb.py                  # for rag.py and improved_rag.py
 ```
 
+The data includes the three sample rows, so Save Data is not needed afterwards (the apps insert them only into an
+empty table). If you pressed Save Data before loading, the loaders skip those ids; either order gives 5,108 rows.
+
 Wait about 3 minutes before asking questions: right after a load, TiDB's full-text ranking differs from the settled
-one. `playground/data/questions.txt` has 58 questions. Pairs that show what retrieval can and cannot do:
+one. `playground/data/questions.txt` has 59 questions. Pairs that show what retrieval can and cannot do:
 
 | Misses (generic) | Hits (specific) |
 |---|---|
@@ -68,11 +72,12 @@ one. `playground/data/questions.txt` has 58 questions. Pairs that show what retr
 These behave the same with exact vector search, with TiDB's vector index, and in `tidb_rag.py` (checked 2026-10-30).
 
 Also try "What does Björn Borg do for a living?" (two people share the name), "INC-2041" (an identifier only full-text
-search finds), "Who fixes leaking pipes in Mölndal?" and "Who saw the northern lights in July?".
+search finds), "Who fixes leaking pipes in Mölndal?", "Who saw the northern lights in July?" and "Who is Cheese Wang
+at PingCAP?" (the lab's own sample rows: Cheese Wang first, then Hao Huo and Humble BGL).
 
 TiDB's vector index is approximate. Once fully built, it missed the nearest row for 9 of the 58 questions on this data
-(recall at 3: 0.88); for example "Who keeps bees?" loses Elin Rosengren from the vector results. With 5,105 rows an exact
-search is cheap (about 60 ms instead of 40): add `+ 0` to the distance in `ORDER BY` so that TiDB compares every row.
+(recall at 3: 0.88, measured before the three sample rows were added); for example "Who keeps bees?" loses Elin
+Rosengren from the vector results. With about 5,100 rows an exact search is cheap (about 60 ms instead of 40): add `+ 0` to the distance in `ORDER BY` so that TiDB compares every row.
 
 Without AWS, TiDB can embed questions itself with its hosted model, on the same vectors:
 
