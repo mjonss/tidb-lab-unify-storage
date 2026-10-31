@@ -103,7 +103,7 @@ def short(text: str) -> str:
 
 def kind(row_id: int) -> str:
     if row_id < 100:
-        return "lab sample"
+        return "lab sample" if row_id < 4 else "event"
     return "real person" if row_id < 1000 else ("fictional" if row_id < 100000 else "filler")
 
 

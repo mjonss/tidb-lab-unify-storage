@@ -1,7 +1,7 @@
 # TiDB Lab: RAG with unified storage
 
 A fork of [Icemap/tidb-lab-unify-storage](https://github.com/Icemap/tidb-lab-unify-storage), the code behind the TiDB
-Labs RAG lab, for trying the lab on your own machine after it ends. It adds a 5,108-person playground dataset with
+Labs RAG lab, for trying the lab on your own machine after it ends. It adds a 5,114-person playground dataset with
 precomputed vectors and loaders for it, and fixes problems found while running the lab (listed below).
 
 The original repository has no license file, so its code comes with no license beyond GitHub's terms of service; ask
@@ -44,9 +44,9 @@ Then open http://localhost:8501. The other apps can use ports 8502 to 8504.
 
 ## Playground data
 
-`playground/data/persons_playground.parquet`: the lab's own three sample rows (ids 1 to 3, the ones Save Data
-inserts), 69 real public people, 36 fictional people with planted details that no model can know, and 5,000 synthetic
-filler people that make generic questions harder, as in real data. The vectors
+`playground/data/persons_playground.parquet`: the lab's own three sample rows (ids 1 to 3, the ones Save Data inserts),
+six people from the Stockholm event (ids 4 to 9), 69 real public people, 36 fictional people with planted details that
+no model can know, and 5,000 synthetic filler people that make generic questions harder, as in real data. The vectors
 (column `intro_vec`) are Titan Text Embeddings V2; Bedrock's `amazon.titan-embed-text-v2:0` and TiDB Cloud's hosted
 `tidbcloud_free/amazon/titan-embed-text-v2` gave bit-for-bit identical vectors for every row.
 
@@ -58,10 +58,10 @@ poetry run python playground/load_multidb.py                  # for rag.py and i
 ```
 
 The data includes the three sample rows, so Save Data is not needed afterwards (the apps insert them only into an
-empty table). If you pressed Save Data before loading, the loaders skip those ids; either order gives 5,108 rows.
+empty table). If you pressed Save Data before loading, the loaders skip those ids; either order gives 5,114 rows.
 
 Wait about 3 minutes before asking questions: right after a load, TiDB's full-text ranking differs from the settled
-one. `playground/data/questions.txt` has 59 questions. Pairs that show what retrieval can and cannot do:
+one. `playground/data/questions.txt` has 65 questions. Pairs that show what retrieval can and cannot do:
 
 | Misses (generic) | Hits (specific) |
 |---|---|

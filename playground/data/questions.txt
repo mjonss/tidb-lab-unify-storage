@@ -57,3 +57,9 @@ Vem bakar kanelbullar i Stockholm?
 Who ran the Stockholm Marathon in a costume?
 Who fixes leaking pipes in Mölndal?
 Who is Cheese Wang at PingCAP?
+Who worked on MySQL partitioning?
+Who works with TiDB partners in Europe?
+Who worked at BCG and Gartner?
+Who has automotive industry expertise?
+Who leads data and GenAI at AWS in the Nordics?
+Who designs architectures for agentic AI?

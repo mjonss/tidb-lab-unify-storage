@@ -1,7 +1,7 @@
 """Compute Amazon Bedrock Titan Text Embeddings V2 vectors for the playground data, called the way the lab apps call it.
 
 Needs AWS access to Bedrock: the lab machine's role in TiDB Labs, otherwise AWS_* variables in .env.
-  poetry run python playground/bedrock_embed.py --check   compare Bedrock with TiDB's hosted Titan v2 on 39 samples
+  poetry run python playground/bedrock_embed.py --check   compare Bedrock with TiDB's hosted Titan v2 on 51 samples
   poetry run python playground/bedrock_embed.py           every row of data/persons_playground.csv, and data/questions.txt
 Options: --threads N (default 8), --limit N (first N rows only, for a trial), --out DIR (default out)
 An interrupted run resumes where it stopped: finished rows are kept in OUT/bedrock_parts/.
